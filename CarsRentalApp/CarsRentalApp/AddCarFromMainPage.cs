@@ -20,6 +20,8 @@ namespace CarsRentalApp
         int yearOfMake;
         int doors;
         string transmission;
+        ViewCars viewCars = new ViewCars();
+
         public AddCarFromMainPage()
         {
             InitializeComponent();
@@ -38,27 +40,6 @@ namespace CarsRentalApp
                 Inventory.AddCar(car);
                 this.Hide();
             }
-            /*ViewCars viewCars = new ViewCars();
-            foreach (Car car in Inventory.Cars)
-            {
-                viewCars.carItem = new ListViewItem(string.Format("{0}", car.Id));
-                viewCars.carItem.SubItems.Add(car.Name);
-                viewCars.carItem.SubItems.Add(car.Make);
-                viewCars.carItem.SubItems.Add(car.Model);
-                viewCars.carItem.SubItems.Add(string.Format("{0}", car.YearOfMake));
-                viewCars.carItem.SubItems.Add(string.Format("{0}", car.Doors));
-                viewCars.carItem.SubItems.Add(car.Transmission);
-                viewCars.carItem.SubItems.Add(string.Format("{0}", car.Rented));
-                if (!viewCars.ListView1.Items.Contains(viewCars.carItem))
-                {
-                    viewCars.ListView1.Items.Add(viewCars.carItem);
-                }
-
-            }
-            viewCars.Show();
-            this.Hide();*/
-
-
         }
 
         private void ModeltextBox_TextChanged(object sender, EventArgs e)

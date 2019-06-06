@@ -18,6 +18,19 @@ namespace CarsRentalApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainPage());
+            //try
+            //{
+                //Inventory.UpdateInvetoryFromFile();
+                //CustomerList.UpdateCustomersFromFile();
+            //}
+            //catch (FileNotFoundException e)
+            //{
+                //PathForm path = new PathForm();
+                //this.Hide();
+                //path.Show();
+                //File.Create(@"C:\Users\TJ\Documents\CarsRentalApp\Inventory.txt");
+                //File.Create(@"C:\Users\TJ\Documents\CarsRentalApp\Customers.txt");
+
+            }
         }
     }
-}

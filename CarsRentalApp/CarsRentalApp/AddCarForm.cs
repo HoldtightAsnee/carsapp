@@ -22,9 +22,18 @@ namespace CarsRentalApp
         int yearOfMake;
         int doors;
         string transmission;
+        ViewCars viewCars;
         public AddCarForm()
         {
             InitializeComponent();
+            viewCars.ListView1.Items.Clear();
+        }
+
+        public AddCarForm(ViewCars view)
+        {
+            InitializeComponent();
+            //view.ListView1.Items.Clear();
+            viewCars = view;
         }
 
 
@@ -38,26 +47,10 @@ namespace CarsRentalApp
             { 
                 car = new Car(name, make, model, yearOfMake, doors, transmission);
                 Inventory.AddCar(car);
+                viewCars.ListView1.Items.Clear();
                 this.Hide();
-                ViewCars viewCars = new ViewCars();
-                foreach (Car car in Inventory.Cars)
-                {
-                    viewCars.carItem = new ListViewItem(string.Format("{0}", car.Id));
-                    viewCars.carItem.SubItems.Add(car.Name);
-                    viewCars.carItem.SubItems.Add(car.Make);
-                    viewCars.carItem.SubItems.Add(car.Model);
-                    viewCars.carItem.SubItems.Add(string.Format("{0}", car.YearOfMake));
-                    viewCars.carItem.SubItems.Add(string.Format("{0}", car.Doors));
-                    viewCars.carItem.SubItems.Add(car.Transmission);
-                    viewCars.carItem.SubItems.Add(string.Format("{0}", car.Rented));
-                    if (!viewCars.ListView1.Items.Contains(viewCars.carItem))
-                    {
-                        viewCars.ListView1.Items.Add(viewCars.carItem);
-                    }
-
-                }
-                viewCars.Show();
-                this.Hide();
+                viewCars.LoadData();
+                //viewCars.Show();            
             }
             
 
@@ -110,24 +103,9 @@ namespace CarsRentalApp
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            ViewCars viewCars = new ViewCars();
-            foreach (Car car in Inventory.Cars)
-            {
-                viewCars.carItem = new ListViewItem(string.Format("{0}", car.Id));
-                viewCars.carItem.SubItems.Add(car.Name);
-                viewCars.carItem.SubItems.Add(car.Make);
-                viewCars.carItem.SubItems.Add(car.Model);
-                viewCars.carItem.SubItems.Add(string.Format("{0}", car.YearOfMake));
-                viewCars.carItem.SubItems.Add(string.Format("{0}", car.Doors));
-                viewCars.carItem.SubItems.Add(car.Transmission);
-                viewCars.carItem.SubItems.Add(string.Format("{0}", car.Rented));
-                if (!viewCars.ListView1.Items.Contains(viewCars.carItem))
-                {
-                    viewCars.ListView1.Items.Add(viewCars.carItem);
-                }
-
-            }
-            viewCars.Show();
+            viewCars.ListView1.Items.Clear();
+            viewCars.LoadData();
+            //viewCars.Show();
             this.Hide();
         }
     }

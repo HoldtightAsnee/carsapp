@@ -50,105 +50,128 @@ namespace CarsRentalApp
             // 
             // NameLabel
             // 
+            this.NameLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(63, 71);
+            this.NameLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NameLabel.Location = new System.Drawing.Point(123, 69);
             this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(51, 20);
+            this.NameLabel.Size = new System.Drawing.Size(77, 29);
             this.NameLabel.TabIndex = 0;
             this.NameLabel.Text = "Name";
             // 
             // NametextBox
             // 
-            this.NametextBox.Location = new System.Drawing.Point(150, 65);
+            this.NametextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.NametextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NametextBox.Location = new System.Drawing.Point(289, 63);
             this.NametextBox.Name = "NametextBox";
-            this.NametextBox.Size = new System.Drawing.Size(100, 26);
+            this.NametextBox.Size = new System.Drawing.Size(249, 35);
             this.NametextBox.TabIndex = 1;
             this.NametextBox.TextChanged += new System.EventHandler(this.NametextBox_TextChanged);
             // 
             // DoorstextBox
             // 
-            this.DoorstextBox.Location = new System.Drawing.Point(150, 286);
+            this.DoorstextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.DoorstextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DoorstextBox.Location = new System.Drawing.Point(289, 278);
             this.DoorstextBox.Name = "DoorstextBox";
-            this.DoorstextBox.Size = new System.Drawing.Size(100, 26);
+            this.DoorstextBox.Size = new System.Drawing.Size(249, 35);
             this.DoorstextBox.TabIndex = 3;
             this.DoorstextBox.TextChanged += new System.EventHandler(this.DoorstextBox_TextChanged);
             // 
             // YearOfMaketextBox
             // 
-            this.YearOfMaketextBox.Location = new System.Drawing.Point(150, 229);
+            this.YearOfMaketextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.YearOfMaketextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.YearOfMaketextBox.Location = new System.Drawing.Point(289, 221);
             this.YearOfMaketextBox.Name = "YearOfMaketextBox";
-            this.YearOfMaketextBox.Size = new System.Drawing.Size(100, 26);
+            this.YearOfMaketextBox.Size = new System.Drawing.Size(249, 35);
             this.YearOfMaketextBox.TabIndex = 4;
             this.YearOfMaketextBox.TextChanged += new System.EventHandler(this.YearOfMaketextBox_TextChanged);
             // 
             // ModeltextBox
             // 
-            this.ModeltextBox.Location = new System.Drawing.Point(150, 178);
+            this.ModeltextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ModeltextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ModeltextBox.Location = new System.Drawing.Point(289, 170);
             this.ModeltextBox.Name = "ModeltextBox";
-            this.ModeltextBox.Size = new System.Drawing.Size(100, 26);
+            this.ModeltextBox.Size = new System.Drawing.Size(249, 35);
             this.ModeltextBox.TabIndex = 5;
             this.ModeltextBox.TextChanged += new System.EventHandler(this.ModeltextBox_TextChanged);
             // 
             // MakeTextBox
             // 
-            this.MakeTextBox.Location = new System.Drawing.Point(150, 123);
+            this.MakeTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.MakeTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MakeTextBox.Location = new System.Drawing.Point(289, 115);
             this.MakeTextBox.Name = "MakeTextBox";
-            this.MakeTextBox.Size = new System.Drawing.Size(100, 26);
+            this.MakeTextBox.Size = new System.Drawing.Size(249, 35);
             this.MakeTextBox.TabIndex = 6;
             this.MakeTextBox.TextChanged += new System.EventHandler(this.MakeTextBox_TextChanged);
             // 
             // Transmission
             // 
+            this.Transmission.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Transmission.AutoSize = true;
-            this.Transmission.Location = new System.Drawing.Point(33, 336);
+            this.Transmission.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Transmission.Location = new System.Drawing.Point(93, 334);
             this.Transmission.Name = "Transmission";
-            this.Transmission.Size = new System.Drawing.Size(102, 20);
+            this.Transmission.Size = new System.Drawing.Size(168, 29);
             this.Transmission.TabIndex = 9;
             this.Transmission.Text = "Transmission";
             // 
             // DoorsLabel
             // 
+            this.DoorsLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.DoorsLabel.AutoSize = true;
-            this.DoorsLabel.Location = new System.Drawing.Point(63, 286);
+            this.DoorsLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DoorsLabel.Location = new System.Drawing.Point(123, 284);
             this.DoorsLabel.Name = "DoorsLabel";
-            this.DoorsLabel.Size = new System.Drawing.Size(52, 20);
+            this.DoorsLabel.Size = new System.Drawing.Size(82, 29);
             this.DoorsLabel.TabIndex = 10;
             this.DoorsLabel.Text = "Doors";
             // 
             // YearOfMakeLabel
             // 
+            this.YearOfMakeLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.YearOfMakeLabel.AutoSize = true;
-            this.YearOfMakeLabel.Location = new System.Drawing.Point(28, 235);
+            this.YearOfMakeLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.YearOfMakeLabel.Location = new System.Drawing.Point(88, 233);
             this.YearOfMakeLabel.Name = "YearOfMakeLabel";
-            this.YearOfMakeLabel.Size = new System.Drawing.Size(107, 20);
+            this.YearOfMakeLabel.Size = new System.Drawing.Size(162, 29);
             this.YearOfMakeLabel.TabIndex = 11;
             this.YearOfMakeLabel.Text = "Year Of Make";
             // 
             // ModelLabel
             // 
+            this.ModelLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ModelLabel.AutoSize = true;
-            this.ModelLabel.Location = new System.Drawing.Point(63, 178);
+            this.ModelLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ModelLabel.Location = new System.Drawing.Point(123, 176);
             this.ModelLabel.Name = "ModelLabel";
-            this.ModelLabel.Size = new System.Drawing.Size(52, 20);
+            this.ModelLabel.Size = new System.Drawing.Size(84, 29);
             this.ModelLabel.TabIndex = 12;
             this.ModelLabel.Text = "Model";
             // 
             // MakeLabel
             // 
+            this.MakeLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.MakeLabel.AutoSize = true;
-            this.MakeLabel.Location = new System.Drawing.Point(63, 123);
+            this.MakeLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MakeLabel.Location = new System.Drawing.Point(123, 121);
             this.MakeLabel.Name = "MakeLabel";
-            this.MakeLabel.Size = new System.Drawing.Size(48, 20);
+            this.MakeLabel.Size = new System.Drawing.Size(73, 29);
             this.MakeLabel.TabIndex = 13;
             this.MakeLabel.Text = "Make";
             // 
             // ChangButton
             // 
+            this.ChangButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ChangButton.AutoSize = true;
             this.ChangButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChangButton.Location = new System.Drawing.Point(204, 393);
+            this.ChangButton.Location = new System.Drawing.Point(385, 404);
             this.ChangButton.Name = "ChangButton";
-            this.ChangButton.Size = new System.Drawing.Size(121, 45);
+            this.ChangButton.Size = new System.Drawing.Size(134, 51);
             this.ChangButton.TabIndex = 14;
             this.ChangButton.Text = "Change";
             this.ChangButton.UseVisualStyleBackColor = true;
@@ -156,23 +179,26 @@ namespace CarsRentalApp
             // 
             // TransmissionComboBox
             // 
+            this.TransmissionComboBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.TransmissionComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TransmissionComboBox.FormattingEnabled = true;
             this.TransmissionComboBox.Items.AddRange(new object[] {
             "Manual",
             "Automatic"});
-            this.TransmissionComboBox.Location = new System.Drawing.Point(150, 336);
+            this.TransmissionComboBox.Location = new System.Drawing.Point(289, 328);
             this.TransmissionComboBox.Name = "TransmissionComboBox";
-            this.TransmissionComboBox.Size = new System.Drawing.Size(121, 28);
+            this.TransmissionComboBox.Size = new System.Drawing.Size(249, 37);
             this.TransmissionComboBox.TabIndex = 15;
             this.TransmissionComboBox.SelectedIndexChanged += new System.EventHandler(this.TransmissionComboBox_SelectedIndexChanged);
             // 
             // CancelButton
             // 
+            this.CancelButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.CancelButton.AutoSize = true;
             this.CancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CancelButton.Location = new System.Drawing.Point(37, 393);
+            this.CancelButton.Location = new System.Drawing.Point(167, 404);
             this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(121, 45);
+            this.CancelButton.Size = new System.Drawing.Size(134, 51);
             this.CancelButton.TabIndex = 16;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
@@ -182,7 +208,8 @@ namespace CarsRentalApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(373, 450);
+            this.BackColor = System.Drawing.Color.SteelBlue;
+            this.ClientSize = new System.Drawing.Size(646, 490);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.TransmissionComboBox);
             this.Controls.Add(this.ChangButton);
@@ -197,8 +224,10 @@ namespace CarsRentalApp
             this.Controls.Add(this.DoorstextBox);
             this.Controls.Add(this.NametextBox);
             this.Controls.Add(this.NameLabel);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "EditForm";
-            this.Text = "AddCarForm";
+            this.Text = "Edit Car";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -9,7 +9,7 @@ namespace CarsRentalApp
 {
     public class Inventory
     {
-        private static string _file = @"C:\Users\TJ\Desktop\CarsRentalApp\Inventory.txt";
+        private static string _file = @"C:\Users\TJ\Documents\CarsRentalApp\Inventory.txt";
         public static string File1 { get => _file; set => _file = value; }
 
         private static List<Car> _cars = new List<Car>();
@@ -21,6 +21,13 @@ namespace CarsRentalApp
         private static List<Car> _availableCars = new List<Car>();
         public static List<Car> AvailableCars { get { return _availableCars; } }
 
+        public static List<int> CustomerIds = new List<int>();
+
+        private static List<Car> _sortedList;
+        public static List<Car> SortedList { get { return _sortedList; } set { _sortedList = value; } }
+
+        private static List<Car> _searchList = new List<Car>();
+        public static List<Car> SearchList { get { return _searchList; } set { _searchList = value; } }
 
 
         public static void AddCar(Car car)
@@ -61,6 +68,7 @@ namespace CarsRentalApp
         {
             _rentedCars.Add(car);
             _availableCars.Remove(car);
+            UpdateInvetoryFile(Cars, false);
         }
 
         public static void RecieveRentedCar(Car car)
@@ -134,10 +142,12 @@ namespace CarsRentalApp
                 string transmission = "";
                 bool rented = false;
                 Car car;
+                int customerId = 0;
                 try
                 {
                     Car.IdCount = int.Parse(reader.ReadLine());
-                } catch (ArgumentNullException f)
+                }
+                catch (ArgumentNullException f)
                 {
                     Car.IdCount = 0;
                 }
@@ -147,7 +157,7 @@ namespace CarsRentalApp
                     if (!string.IsNullOrWhiteSpace(carDetails))
                     {
                         string[] carDetailsList = carDetails.Split(',');
-                        for (int i = 0; i < carDetailsList.Length - 1; i++)
+                        for (int i = 0; i < carDetailsList.Length; i++)
                         {
                             switch (i)
                             {
@@ -173,23 +183,21 @@ namespace CarsRentalApp
                                     transmission = carDetailsList[i].Trim();
                                     break;
                                 case 7:
-                                    if (carDetailsList[i].Contains("Not"))
-                                    {
-                                        rented = false;
-                                    }
-                                    else
+                                    if (!carDetailsList[i].Contains("Not"))
                                     {
                                         rented = true;
+                                        CustomerIds.Add(int.Parse(carDetailsList[i].Trim()));
+
                                     }
                                     break;
                                 default:
                                     break;
                             }
                         }
-                        car = new Car(name, make, model, yearOfMake, doors, transmission);
+                        car = new Car(name, make, model, yearOfMake, doors, transmission, false);
                         if (rented)
                         {
-                            car.Rented = rented;
+                            RentedCars.Add(car);
                         }
                         car.Id = id;
                         UpdateInventory(car);
@@ -214,6 +222,331 @@ namespace CarsRentalApp
             else
             {
                 Inventory.AvailableCars.Add(car);
+            }
+        }
+
+        public static void UpdateRentalInfo()
+        {
+            for (int i = 0; i < RentedCars.Count; i++)
+            {
+                foreach (Customer customer in CustomerList.RentingCustomers)
+                {
+                    try
+                    {
+                        if (CustomerIds[i] == customer.Id)
+                        {
+                            RentedCars[i].Rent(customer);
+                        }
+                    }
+                    catch (IndexOutOfRangeException f)
+                    {
+                        break;
+                    }
+                    catch (ArgumentOutOfRangeException f)
+                    {
+                        break;
+                    }
+                }
+                UpdateInvetoryFile(Cars, false);
+            }
+        }
+
+        public static void SortByAscending(string field)
+        {
+            Car temp;
+            SortedList = new List<Car>(Cars);
+            if (field.Equals("ID"))
+            {
+                for (int j = 0; j <= SortedList.Count - 2; j++)
+                {
+                    for (int i = 0; i <= SortedList.Count - 2; i++)
+                    {
+                        if (SortedList[i].Id > SortedList[i + 1].Id)
+                        {
+                            temp = SortedList[i + 1];
+                            SortedList[i + 1] = SortedList[i];
+                            SortedList[i] = temp;
+                        }
+                    }
+                }
+            }
+            else if (field.Equals("Name"))
+            {
+                for (int j = 0; j <= SortedList.Count - 2; j++)
+                {
+                    for (int i = 0; i <= SortedList.Count - 2; i++)
+                    {
+                        if (string.Compare(SortedList[i].Name, SortedList[i + 1].Name) > 0)
+                        {
+                            temp = SortedList[i + 1];
+                            SortedList[i + 1] = SortedList[i];
+                            SortedList[i] = temp;
+                        }
+                    }
+                }
+            }
+            else if (field.Equals("Make"))
+            {
+                for (int j = 0; j <= SortedList.Count - 2; j++)
+                {
+                    for (int i = 0; i <= SortedList.Count - 2; i++)
+                    {
+                        if (string.Compare(SortedList[i].Make, SortedList[i + 1].Make) > 0)
+                        {
+                            temp = SortedList[i + 1];
+                            SortedList[i + 1] = SortedList[i];
+                            SortedList[i] = temp;
+                        }
+                    }
+                }
+            }
+            else if (field.Equals("Model"))
+            {
+                for (int j = 0; j <= SortedList.Count - 2; j++)
+                {
+                    for (int i = 0; i <= SortedList.Count - 2; i++)
+                    {
+                        if (string.Compare(SortedList[i].Model, SortedList[i + 1].Model) > 0)
+                        {
+                            temp = SortedList[i + 1];
+                            SortedList[i + 1] = SortedList[i];
+                            SortedList[i] = temp;
+                        }
+                    }
+                }
+            }
+            else if (field.Equals("Year of Make"))
+            {
+                for (int j = 0; j <= SortedList.Count - 2; j++)
+                {
+                    for (int i = 0; i <= SortedList.Count - 2; i++)
+                    {
+                        if (SortedList[i].YearOfMake > SortedList[i + 1].YearOfMake)
+                        {
+                            temp = SortedList[i + 1];
+                            SortedList[i + 1] = SortedList[i];
+                            SortedList[i] = temp;
+                        }
+                    }
+                }
+            }
+            else if (field.Equals("Doors"))
+            {
+                for (int j = 0; j <= SortedList.Count - 2; j++)
+                {
+                    for (int i = 0; i <= SortedList.Count - 2; i++)
+                    {
+                        if (SortedList[i].Doors > SortedList[i + 1].Doors)
+                        {
+                            temp = SortedList[i + 1];
+                            SortedList[i + 1] = SortedList[i];
+                            SortedList[i] = temp;
+                        }
+                    }
+                }
+            }
+            else if (field.Equals("Transmission"))
+            {
+                for (int j = 0; j <= SortedList.Count - 2; j++)
+                {
+                    for (int i = 0; i <= SortedList.Count - 2; i++)
+                    {
+                        if (string.Compare(SortedList[i].Transmission, SortedList[i + 1].Transmission) > 0)
+                        {
+                            temp = SortedList[i + 1];
+                            SortedList[i + 1] = SortedList[i];
+                            SortedList[i] = temp;
+                        }
+                    }
+                }
+            }
+
+
+        }
+
+        public static void SortByDescending(string field)
+        {
+            Car temp;
+            SortedList = new List<Car>(Cars);
+            if (field.Equals("ID"))
+            {
+                for (int j = 0; j <= SortedList.Count - 2; j++)
+                {
+                    for (int i = 0; i <= SortedList.Count - 2; i++)
+                    {
+                        if (SortedList[i].Id < SortedList[i + 1].Id)
+                        {
+                            temp = SortedList[i + 1];
+                            SortedList[i + 1] = SortedList[i];
+                            SortedList[i] = temp;
+                        }
+                    }
+                }
+            }
+            else if (field.Equals("Name"))
+            {
+                for (int j = 0; j <= SortedList.Count - 2; j++)
+                {
+                    for (int i = 0; i <= SortedList.Count - 2; i++)
+                    {
+                        if (string.Compare(SortedList[i].Name, SortedList[i + 1].Name) < 0)
+                        {
+                            temp = SortedList[i + 1];
+                            SortedList[i + 1] = SortedList[i];
+                            SortedList[i] = temp;
+                        }
+                    }
+                }
+            }
+            else if (field.Equals("Make"))
+            {
+                for (int j = 0; j <= SortedList.Count - 2; j++)
+                {
+                    for (int i = 0; i <= SortedList.Count - 2; i++)
+                    {
+                        if (string.Compare(SortedList[i].Make, SortedList[i + 1].Make) < 0)
+                        {
+                            temp = SortedList[i + 1];
+                            SortedList[i + 1] = SortedList[i];
+                            SortedList[i] = temp;
+                        }
+                    }
+                }
+            }
+            else if (field.Equals("Model"))
+            {
+                for (int j = 0; j <= SortedList.Count - 2; j++)
+                {
+                    for (int i = 0; i <= SortedList.Count - 2; i++)
+                    {
+                        if (string.Compare(SortedList[i].Model, SortedList[i + 1].Model) < 0)
+                        {
+                            temp = SortedList[i + 1];
+                            SortedList[i + 1] = SortedList[i];
+                            SortedList[i] = temp;
+                        }
+                    }
+                }
+            }
+            else if (field.Equals("Year of Make"))
+            {
+                for (int j = 0; j <= SortedList.Count - 2; j++)
+                {
+                    for (int i = 0; i <= SortedList.Count - 2; i++)
+                    {
+                        if (SortedList[i].YearOfMake < SortedList[i + 1].YearOfMake)
+                        {
+                            temp = SortedList[i + 1];
+                            SortedList[i + 1] = SortedList[i];
+                            SortedList[i] = temp;
+                        }
+                    }
+                }
+            }
+            else if (field.Equals("Doors"))
+            {
+                for (int j = 0; j <= SortedList.Count - 2; j++)
+                {
+                    for (int i = 0; i <= SortedList.Count - 2; i++)
+                    {
+                        if (SortedList[i].Doors < SortedList[i + 1].Doors)
+                        {
+                            temp = SortedList[i + 1];
+                            SortedList[i + 1] = SortedList[i];
+                            SortedList[i] = temp;
+                        }
+                    }
+                }
+            }
+            else if (field.Equals("Transmission"))
+            {
+                for (int j = 0; j <= SortedList.Count - 2; j++)
+                {
+                    for (int i = 0; i <= SortedList.Count - 2; i++)
+                    {
+                        if (string.Compare(SortedList[i].Transmission, SortedList[i + 1].Transmission) < 0)
+                        {
+                            temp = SortedList[i + 1];
+                            SortedList[i + 1] = SortedList[i];
+                            SortedList[i] = temp;
+                        }
+                    }
+                }
+            }
+        }
+
+        public static void UpdateSearchList(string field, string value)
+        {
+            SearchList.Clear();
+            if (field.Equals("ID"))
+            {
+                foreach(Car car in Cars)
+                {
+                    if (car.Id == int.Parse(value))
+                    {
+                        SearchList.Add(car);
+                    }
+                }
+            }
+            else if (field.Equals("Name"))
+            {
+                foreach(Car car in Cars)
+                {
+                    if (car.Name.Contains(value))
+                    {
+                        SearchList.Add(car);
+                    }
+                }
+            }
+            else if (field.Equals("Make"))
+            {
+                foreach (Car car in Cars)
+                {
+                    if (car.Make.Contains(value))
+                    {
+                        SearchList.Add(car);
+                    }
+                }
+            }
+            else if (field.Equals("Model"))
+            {
+                foreach (Car car in Cars)
+                {
+                    if (car.Model.Contains(value))
+                    {
+                        SearchList.Add(car);
+                    }
+                }
+            }
+            else if (field.Equals("Year of Make"))
+            {
+                foreach (Car car in Cars)
+                {
+                    if (car.YearOfMake == int.Parse(value))
+                    {
+                        SearchList.Add(car);
+                    }
+                }
+            }
+            else if (field.Equals("Doors"))
+            {
+                foreach (Car car in Cars)
+                {
+                    if (car.YearOfMake == int.Parse(value))
+                    {
+                        SearchList.Add(car);
+                    }
+                }
+            }
+            else if (field.Equals("Transmission"))
+            {
+                foreach (Car car in Cars)
+                {
+                    if (car.Transmission.Contains(value))
+                    {
+                        SearchList.Add(car);
+                    }
+                }
             }
         }
     }

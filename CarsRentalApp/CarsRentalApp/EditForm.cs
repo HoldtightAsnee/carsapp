@@ -14,22 +14,27 @@ namespace CarsRentalApp
     {
         Car car;
         public Car Car { get { return car; } }
-
         public List<Car> CarsToEdit { get => carsToEdit; set => carsToEdit = value; }
-
         string name;
         string make;
         string model;
         int yearOfMake;
         int doors;
         string transmission;
-        ViewCars viewCars = new ViewCars();
+        ViewCars viewCars;
         List<Car> carsToEdit = new List<Car>();
         Car oldCar;
 
         public EditForm()
         {
             InitializeComponent();
+            viewCars.ListView1.Items.Clear();
+        }
+
+        public EditForm(ViewCars view)
+        {
+            InitializeComponent();
+            viewCars = view;
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -41,37 +46,13 @@ namespace CarsRentalApp
             else
             {
                 oldCar = CarsToEdit[0];
-                //List<Car> carsToEdit = new List<Car>();
-                //foreach (Car car in Inventory.Cars)
-                //{
-                //    if (car.Id == int.Parse(viewCars.ListView1.SelectedItems[0].SubItems[0].Text))
-                //    {
-                //        carsToEdit.Add(car);
-                //    }
-                //}
-
-                   car = new Car(name, make, model, yearOfMake, doors, transmission);
+                car = new Car(name, make, model, yearOfMake, doors, transmission);
                 Inventory.UpdateCar(oldCar, car);
-                    foreach (Car car in Inventory.Cars)
-                    {
-                        viewCars.carItem = new ListViewItem(string.Format("{0}", car.Id));
-                        viewCars.carItem.SubItems.Add(car.Name);
-                        viewCars.carItem.SubItems.Add(car.Make);
-                        viewCars.carItem.SubItems.Add(car.Model);
-                        viewCars.carItem.SubItems.Add(string.Format("{0}", car.YearOfMake));
-                        viewCars.carItem.SubItems.Add(string.Format("{0}", car.Doors));
-                        viewCars.carItem.SubItems.Add(car.Transmission);
-                        viewCars.carItem.SubItems.Add(string.Format("{0}", car.Rented));
-                        if (!viewCars.ListView1.Items.Contains(viewCars.carItem))
-                        {
-                            viewCars.ListView1.Items.Add(viewCars.carItem);
-                        }
-
-                    }
-                    viewCars.Show();
-                    this.Hide();
-                }
+                viewCars.ListView1.Items.Clear();
+                viewCars.LoadData();
+                this.Hide();
             }
+        }
 
 
 
@@ -122,24 +103,7 @@ namespace CarsRentalApp
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            ViewCars viewCars = new ViewCars();
-            foreach (Car car in Inventory.Cars)
-            {
-                viewCars.carItem = new ListViewItem(string.Format("{0}", car.Id));
-                viewCars.carItem.SubItems.Add(car.Name);
-                viewCars.carItem.SubItems.Add(car.Make);
-                viewCars.carItem.SubItems.Add(car.Model);
-                viewCars.carItem.SubItems.Add(string.Format("{0}", car.YearOfMake));
-                viewCars.carItem.SubItems.Add(string.Format("{0}", car.Doors));
-                viewCars.carItem.SubItems.Add(car.Transmission);
-                viewCars.carItem.SubItems.Add(string.Format("{0}", car.Rented));
-                if (!viewCars.ListView1.Items.Contains(viewCars.carItem))
-                {
-                    viewCars.ListView1.Items.Add(viewCars.carItem);
-                }
-
-            }
-            viewCars.Show();
+            //viewCars.LoadData();
             this.Hide();
         }
 

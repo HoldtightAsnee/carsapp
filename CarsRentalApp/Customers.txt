@@ -1,0 +1,21 @@
+13
+1, Jack, Johnson, Not Renting
+
+2, Will, Sure, Not Renting
+
+3, Ham, Legg, Not Renting
+
+4, Some, Guy, Not Renting
+
+5, James, Shammills, Not Renting
+
+6, Luke, Mills, 3
+
+8, Charlotte, Hello, Not Renting
+
+10, John, Wick, Not Renting
+
+12, James, Patterson, Not Renting
+
+13, Luke, SkyWalker, Not Renting
+

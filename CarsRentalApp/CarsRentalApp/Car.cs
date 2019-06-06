@@ -32,12 +32,22 @@ namespace CarsRentalApp
         private int _doors;
         public int Doors { get { return _doors; } set { _doors = value; } }
 
+
         private string _transmission;
         public string Transmission { get { return _transmission; } set { _transmission = value; } }
 
-        public Car(string name, string make, string model, int yearOfMake, int doors, string transmission)
+
+        private Customer _customerRenting;
+        public Customer CustomerRenting { get => _customerRenting; set => _customerRenting = value; }
+
+
+
+        public Car(string name, string make, string model, int yearOfMake, int doors, string transmission, bool addIdCount = true)
         {
-            _idCount++;
+            if (addIdCount)
+            {
+                _idCount++;
+            }
             _id = _idCount;
             _name = name;
             _make = make;
@@ -50,12 +60,20 @@ namespace CarsRentalApp
 
         }
 
-        public void Rent()
+        public void Rent(Customer customer)
         {
-            //this.CustomerRenting = customer;
+            this.CustomerRenting = customer;
             this.Rented = true;
             Inventory.RentCar(this);
-            //customer.Rent(this);
+            customer.Rent(this);
+        }
+
+        public void Return()
+        {
+            this.CustomerRenting = null;
+            this.Rented = false;
+            Inventory.RecieveRentedCar(this);
+            Inventory.UpdateInvetoryFile(Inventory.Cars, false);
         }
 
         public override string ToString()
@@ -66,9 +84,15 @@ namespace CarsRentalApp
                     this.Make, this.Model, this.YearOfMake, this.Doors, this.Transmission);
             }else
             {
-                return String.Format("{0}, {1}, {2}, {3}, {4}, {5}, {6}, Rented\n", this.Id, this.Name,
-                    this.Make, this.Model, this.YearOfMake, this.Doors, this.Transmission);
+                return String.Format("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}\n", this.Id, this.Name,
+                    this.Make, this.Model, this.YearOfMake, this.Doors, this.Transmission, this._customerRenting.Id);
             }
+        }
+
+        public string Information()
+        {
+            return String.Format("{0} {1} {2} {3}\nDoors: {4}\nTransmission: {5}", this.Name,
+                   this.Make, this.Model, this.YearOfMake, this.Doors, this.Transmission);
         }
     }
 }
